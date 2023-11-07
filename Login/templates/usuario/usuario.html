@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+
+<title>{% block title %}Santo Brilho - Usuario{% endblock %}</title>
+
+
+{% block content %}
+<!-- <div class="row justify-content-center">
+    <div class="w-50 mt-3 ">
+        <h4 class="card-title mt-3 b-b">Cadastro de usuário</h4>
+
+        <form method="post">
+            {% if messages %}
+                {% for m in messages %}
+                    <div class="alert alert-{{ m.tags }}" role="alert">
+                    {{ m }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="first_name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name">
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="last_name" class="form-label">Sobrenome</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name">
+                </div>
+            </div>
+
+            <div class="mb-3">
+            <label for="username" class="form-label">Email</label>
+            <input type="email" class="form-control" id="username" name="username">
+            </div>
+            
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" value="123">
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="password1" class="form-label">Confime a Senha</label>
+                    <input type="password" class="form-control" id="password1" name="password1" value="123">
+                </div>
+            </div>
+            
+            <div class="mb-3">
+            <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+
+<div class="row justify-content-center align-items-center  mt-3">
+    <div class="col-8">
+    <h4 class="card-title mt-3 border-bottom">Cadastro de Usuário</h4>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-{{ m.tags }}" role="alert">
+                {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row ">
+        <div class="col-md-4 col-sm-2 col-xs-2">
+            <label for="first_name" class="col-sm-2 col-form-label">Nome</label>
+            <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+
+        <div class="col-md-8 col-sm-2 col-xs-2">
+            <label for="last_name" class="col-sm-2 col-form-label">Sobrenome</label>
+            <input type="text" class="form-control" id="last_name" name="last_name">
+        </div>
+        </div>
+
+        <div class="row ">
+        <div class="col-md-12 col-sm-2 col-xs-2">
+            <label for="username" class="col-sm-2 col-form-label">Email</label>
+            <input type="email" class="form-control" id="username" name="username">
+        </div>
+        </div>
+
+        <div class="row ">
+        <div class="col-md-4 col-sm-2 col-xs-2">
+            <label for="password" class="col-sm-2 col-form-label">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" value="123">
+        </div>
+
+        <div class="col-md-8 col-sm-2 col-xs-2">
+            <label for="password1" class="col-sm-12 col-form-label">Confirme a senha</label>
+            <input type="password" class="form-control" id="password1" name="password1" value="123">
+        </div>
+        </div>
+
+        <div class="row ">
+        <div class="col-md-12 col-sm-2 col-xs-2 mt-3">
+            <button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+        </div>
+        </div>
+        
+        
+    </form>
+    </div>
+</div>
+  
+{% endblock %}

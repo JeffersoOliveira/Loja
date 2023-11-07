@@ -85,6 +85,10 @@ target/
 __pycache__/
 local_settings.py
 
+
+# ADICIONADO 
 .env
 db.sqlite3
 config.py
+base_responsive.html
+VENV

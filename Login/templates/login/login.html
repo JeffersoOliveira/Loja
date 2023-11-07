@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+<title>{% block title %}Santo Brilho - Login{% endblock %}</title>
+
+
+{% block content %}
+
+
+
+<div class="row justify-content-center align-items-center mt-5">
+
+  {% if messages %}
+    {% for m in messages %}
+        <div class="alert alert-{{ m.tags }}" role="alert">
+        {{ m }}
+        </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class=" col-md-4">
+    <form method="POST" >
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="username" class="form-label">Email</label>
+      <input type="text" class="form-control input-mobile" name="username" id="username" placeholder="Digite seu email">
+    </div>
+    <div class="mb-4">
+      <label for="password" class="form-label">Senha</label>
+      <input type="password" class="form-control input-mobile" name="password" id="password " placeholder="Digitre sua senha">
+    </div>
+    <div class="col-12 ">
+      <button type="submit" class="btn btn-primary w-100 input-mobile">Logar</button>
+    </div>
+  </form>
+  </div>
+{% endblock %}

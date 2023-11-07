@@ -1,0 +1,41 @@
+/** **/
+/** USADO NO CADASTRO DE USUARIO **/
+.border-bottom{
+    border-bottom: 1px solid #cecfd1;
+    color: #5a5a5a;
+    padding-bottom: 10px!important;
+}
+
+
+.navbar {
+padding-top: 1.0rem!important;
+padding-bottom: 1.0rem!important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    font-size: 1rem;
+}
+
+.alinhar_direita {
+    justify-content: end;
+    width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+
+    .dir {
+        justify-content: end;
+        width: 100%;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        font-size: 1.2rem;
+    }
+    
+    .input-mobile{  
+        padding: 15px;
+    }
+
+
+
+}

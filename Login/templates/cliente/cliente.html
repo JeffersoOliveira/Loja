@@ -9,20 +9,28 @@
 <div class="row justify-content-center align-items-center  mt-3">
     <div class="col-md-8 mb-5">
       <h4 class="card-title mt-3 border-bottom">Cadastro de cliente</h4>
-      <select class="form-select mb-3 " aria-label="Default select example" name="tipo1" id="tipo1">
+      {% if messages %}
+          {% for m in messages %}
+              <div class="alert alert-{{ m.tags }}" role="alert">
+              {{ m }}
+              </div>
+          {% endfor %}
+        {% endif %}
+      <select class="form-select mb-3 " aria-label="Default select example" name="selecionado" id="selecionado">
         <option selected disabled>Selecione o tipo</option>
         <option value="1">Pessoa Física</option>
         <option value="2">Pessoa Jurídica</option>
       </select>
 
+
       <!-- FORMULÁRIO PESSOA FÍSICA -->
-      <form method="POST" id="form_cad_cliente">
+      <form method="POST" action="{% url 'cadastroCliente' %}" id="form_cad_cliente">
         {% csrf_token %}
         
         <div class="row ">
           <div class="col-md-8 col-sm-2 col-xs-2" id="nome">
-            <label for="inputnome" class="col-sm-2 col-form-label">Nome</label>
-            <input type="text" class="form-control" id="inputnome" name="nome">
+            <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome">
           </div>
           <div class="col-md-8 col-sm-2 col-xs-2" id="razaosocial">
             <label for="razaosocial" class="col-sm-4 col-form-label">Razão Social</label>
@@ -30,37 +38,38 @@
           </div>
 
           <div class="col-md-4 col-sm-2 col-xs-2">
-            <label for="inputtelefone" class="col-sm-2 col-form-label">Telefone</label>
-            <input type="tel" class="form-control" id="inputtelefone" name="telefone">
+            {{form.telefone.erros}}
+            <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
+            <input type="tel" class="form-control" id="telefone" name="telefone">
           </div>
         </div>
 
         <div class="row ">
             <div class="col-md-4 col-sm-2 col-xs-2"  id="cnpj">
-                <label for="inputcnpj" class="col-sm-2 col-form-label">CNPJ</label>
-                <input type="text" class="form-control" id="inputcnpj" name="cnpj">
+                <label for="cnpj" class="col-sm-2 col-form-label">CNPJ</label>
+                <input type="text" class="form-control" id="cnpj" name="cnpj">
             </div>
 
             <div class="col-md-3 col-sm-2 col-xs-2"  id="inscestadual">
-                <label for="inputinscestadual" class="col-sm-12 col-form-label">Insc. Estadual</label>
-                <input type="text" class="form-control" id="inputinscestadual" name="inscestadual">
+                <label for="inscestadual" class="col-sm-12 col-form-label">Insc. Estadual</label>
+                <input type="text" class="form-control" id="inscestadual" name="inscestadual">
             </div>
 
             <div class="col-md-4 col-sm-2 col-xs-2" id="cpf">
-            <label for="inputcpf" class="col-sm-2 col-form-label">CPF</label>
-            <input type="text" class="form-control" id="inputcpf" name="cpf">
+            <label for="inscestadual" class="col-sm-2 col-form-label">CPF</label>
+            <input type="text" class="form-control" id="inscestadual" name="cpf">
           </div>
 
           <div class="col-md-5 col-sm-2 col-xs-2">
-            <label for="inputemail" class="col-sm-2 col-form-label">Email</label>
-            <input type="email" class="form-control" id="inputemail" name="email">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
           </div>
         </div>
 
         <div class="row ">
           <div class="col-md-4 col-sm-2 col-xs-2">
-            <label for="inputcep" class="col-sm-2 col-form-label">Cep</label>
-            <input type="text" class="form-control" id="inputcep" name="cep">
+            <label for="cep" class="col-sm-2 col-form-label">Cep</label>
+            <input type="text" class="form-control" id="cep" name="cep">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2 align-self-end mt-3">
@@ -70,36 +79,41 @@
         
         <div class="row ">
           <div class="col-md-8 col-sm-2 col-xs-2">
-            <label for="inputrua" class="col-sm-2 col-form-label">Rua</label>
-            <input type="text" class="form-control" id="inputrua" name="rua">
+            <label for="rua" class="col-sm-2 col-form-label">Rua</label>
+            <input type="text" class="form-control" id="rua" name="rua">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2">
-            <label for="inputnumero" class="col-sm-2 col-form-label">Numero</label>
-            <input type="text" class="form-control" id="inputnumero" name="numero">
+            <label for="numero" class="col-sm-2 col-form-label">Numero</label>
+            <input type="text" class="form-control" id="numero" name="numero">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2">
-            <label for="inputcomplemento" class="col-sm-2 col-form-label">Complemento</label>
-            <input type="text" class="form-control" id="inputcomplemento" name="complemento">
+            <label for="complemento" class="col-sm-2 col-form-label">Complemento</label>
+            <input type="text" class="form-control" id="complemento" name="complemento">
           </div>
         </div>
 
         <div class="row ">
           <div class="col-md-6 col-sm-2 col-xs-2">
-            <label for="inputbairro" class="col-sm-2 col-form-label">Bairro</label>
-            <input type="text" class="form-control" id="inputbairro" name="bairro">
+            <label for="bairro" class="col-sm-2 col-form-label">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro">
           </div>
 
           <div class="col-md-4 col-sm-2 col-xs-2">
-            <label for="inputcidade" class="col-sm-2 col-form-label">Cidade</label>
-            <input type="text" class="form-control" id="inputcidade" name="cidade">
+            <label for="cidade" class="col-sm-2 col-form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2">
-            <label for="inputuf" class="col-sm-2 col-form-label">Uf</label>
-            <input type="text" class="form-control" id="inputuf" name="uf">
-            <input type="text" class="form-control" id="inputtipo" name="tipo">
+            <label for="uf" class="col-sm-2 col-form-label">Uf</label>
+            <input type="text" class="form-control" id="uf" name="uf">
+            
+          </div>
+
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <input type="hidden" class="form-control" id="tipo" name="tipo">
+            
           </div>
 
         </div>

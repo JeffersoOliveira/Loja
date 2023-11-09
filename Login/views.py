@@ -5,6 +5,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
+from .models import Cliente
+from .forms import ClientePfForm
+
 # Create your views here.
 
 def teste(request):
@@ -41,30 +44,43 @@ def desLogar(request):
 @login_required
 def cadastroCliente(request):
     if request.method == 'GET':
-        return render(request, 'cliente/cliente.html')
+
+        return render(request, 'cliente/cliente.html', {
+            'form': ClientePfForm
+        })
     elif request.method == 'POST':
-        tipo = request.POST['tipo']
-        nome = request.POST['nome']
-        razaosocial = request.POST['razaosocial']
-        cnpj = request.POST['cnpj']
-        inscestadual = request.POST['inscestadual']
-        telefone = request.POST['telefone']
-        cpf = request.POST['cpf']
-        email = request.POST['email']
-        cep = request.POST['cep']
-        rua = request.POST['rua']
-        numero = request.POST['numero']
-        complemento = request.POST['complemento']
-        bairro = request.POST['bairro']
-        cidade = request.POST['cidade']
-        uf = request.POST['uf']
-        if tipo == '1':
-            print('fisica')
-        elif tipo == '2':
-            print('juridica')
+
+        form = ClientePfForm(request.POST)
+        
+        if request.POST.get('tipo') == "1":
+            if form.is_valid():
+                cliente = Cliente.objects.filter(cpf = request.POST.get('cpf'))               
+                if cliente:
+                    messages.warning(request, 'Cpf já cadastrado no sitema')
+                    return redirect('cadastroCliente')
+                
+                form.save()
+
+                messages.info(request, 'Cliente cadastrado com sucesso.')
+                return redirect('cadastroCliente') 
+
+            else:
+                messages.info(request, 'Algo deu errado, por favor contate o administrador.')
+                return redirect('cadastroCliente') 
 
 
+        elif request.POST.get('tipo') == "2":
+            print('pj')
+
+        
         return render(request, 'cliente/cliente.html')
+
+@login_required
+def listarCliente(request):
+    list = Cliente.objects.all()
+
+    return render(request, "cliente/listar.html", {'List': list})
+
 
 @login_required
 def cadastroProduto(request):

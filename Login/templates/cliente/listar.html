@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+<title>{% block title %}Santo Brilho - Lista de Clientes{% endblock %}</title>
+
+
+{% block content %}
+<!-- NOVO -->
+<div class="row justify-content-center align-items-center  mt-3">
+    <ul class="col-md-10 mb-5">
+      <h4 class="card-title mt-3 border-bottom">Lista de clientes</h4>
+      {% if messages %}
+          {% for m in messages %}
+              <div class="alert alert-{{ m.tags }}" role="alert">
+              {{ m }}
+              </div>
+          {% endfor %}
+        {% endif %}
+      <select class="form-select mb-3 " aria-label="Default select example" name="selecionado" id="selecionado">
+        <option selected disabled>Selecione o tipo</option>
+        <option value="1">Pessoa Física</option>
+        <option value="2">Pessoa Jurídica</option>
+      </select>
+
+
+      <ul class="list-group">
+      {% for cliente in List %}
+        <li class="list-group-item d-flex justify-content-between align-items-center ">
+          {{cliente.nome}}
+          
+          <div class="justify-content-end">
+            <span class="badge bg-primary rounded-pill">{% if cliente.tipo == '1' %} PF {% else %} PJ {% endif %}</span>
+          </div>
+         </li>
+      {% endfor %}
+      </ul>
+      
+    </div>
+  </div>
+{% endblock %}

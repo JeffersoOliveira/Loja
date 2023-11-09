@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 
 
-$('#tipo1').change(function () {
+$('#selecionado').change(function () {
     var selectedValue = $(this).val();
     if(selectedValue == "1")
     {

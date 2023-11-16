@@ -21,6 +21,15 @@ padding-bottom: 1.0rem!important;
     width: 100%;
 }
 
+.btn-edit {
+    padding: 0px!important;
+    margin: 0rem 0rem;
+    font-size: 15px;
+}
+.btn-edit:hover{
+    color: #a00404fa;
+}
+
 @media screen and (max-width: 500px) {
 
     .dir {

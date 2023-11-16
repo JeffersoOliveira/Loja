@@ -26,10 +26,26 @@
       <ul class="list-group">
       {% for cliente in List %}
         <li class="list-group-item d-flex justify-content-between align-items-center ">
-          {{cliente.nome}}
+          {% if cliente.tipo == '1' %} {{cliente.nome}} {% else %} {{cliente.razaosocial}} {% endif %}
+          
           
           <div class="justify-content-end">
-            <span class="badge bg-primary rounded-pill">{% if cliente.tipo == '1' %} PF {% else %} PJ {% endif %}</span>
+            <a href="" title="Pedidos do cliente" class="btn btn-edit">
+              <span class="material-icons">
+                library_books
+              </span>
+            </a>
+            <a href="{% url 'detalhesCliente' cliente.id %}" title="Edita cliente" class="btn btn-edit">
+              <span class="material-icons">
+                edit
+              </span>
+            </a>
+            <a href="{% url 'deleteCliente' cliente.id %}"  title="Deletar cliente" class="btn btn-edit btn-deletar">
+              <span class="material-icons">
+                delete
+              </span>
+            </a>
+            <!-- <span class="badge bg-primary rounded-pill">{% if cliente.tipo == '1' %} PF {% else %} PJ {% endif %}</span> -->
           </div>
          </li>
       {% endfor %}

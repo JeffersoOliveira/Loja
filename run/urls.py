@@ -26,6 +26,10 @@ urlpatterns = [
     
     path('cliente/', views.cadastroCliente, name='cadastroCliente'),
     path('cliente/listar', views.listarCliente, name='listarCliente'),
+    path('cliente/listar/<id>', views.detalhesCliente, name='detalhesCliente'),
+    path('cliente/delete/<id>', views.deleteCliente, name='deleteCliente'),
+    path('cliente/atualizar', views.atualizarCliente, name='atualizarCliente'),
+    
 
     path('usuario/', views.cadastroUsuario, name='cadastroUsuario'),
 

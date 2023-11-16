@@ -8,7 +8,7 @@
 <!-- NOVO -->
 <div class="row justify-content-center align-items-center  mt-3">
     <div class="col-md-10 mb-5">
-      <h4 class="card-title mt-3 border-bottom">Cadastro de cliente</h4>
+      <h4 class="card-title mt-3 border-bottom">Editar cliente</h4>
       {% if messages %}
           {% for m in messages %}
               <div class="alert alert-{{ m.tags }}" role="alert">
@@ -16,60 +16,60 @@
               </div>
           {% endfor %}
         {% endif %}
-      <select class="form-select mb-3 " aria-label="Default select example" name="selecionado" id="selecionado">
-        <option selected disabled>Selecione o tipo</option>
-        <option value="1">Pessoa Física</option>
-        <option value="2">Pessoa Jurídica</option>
-      </select>
-
-
+      
       <!-- FORMULÁRIO PESSOA FÍSICA -->
-      <form method="POST" action="{% url 'cadastroCliente' %}" id="form_cad_cliente">
+      <form method="POST" action="{% url 'atualizarCliente' %}">
         {% csrf_token %}
         
         <div class="row ">
+          {% if cliente.tipo == '1' %}
           <div class="col-md-8 col-sm-2 col-xs-2" id="nome">
             <label for="nome" class="col-sm-2 col-form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" name="nome">
+            <input type="text" class="form-control" id="nome" name="nome" value="{{cliente.nome}}" required="required">
           </div>
+        {% else %}
           <div class="col-md-8 col-sm-2 col-xs-2" id="razaosocial">
             <label for="razaosocial" class="col-sm-4 col-form-label">Razão Social</label>
-            <input type="text" class="form-control" id="razaosocial" name="razaosocial">
+            <input type="text" class="form-control" id="razaosocial" name="razaosocial" value="{{cliente.razaosocial}}" required="required">
           </div>
+          {% endif %}
 
           <div class="col-md-4 col-sm-2 col-xs-2">
             {{form.telefone.erros}}
             <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
-            <input type="tel" class="form-control" id="telefone" name="telefone">
+            <input type="tel" class="form-control" id="telefone" name="telefone" value="{{cliente.telefone}}" required="required">
           </div>
         </div>
 
         <div class="row ">
+          {% if cliente.tipo == '2' %}
             <div class="col-md-4 col-sm-2 col-xs-2"  id="cnpj">
                 <label for="cnpj" class="col-sm-2 col-form-label">CNPJ</label>
-                <input type="text" class="form-control" id="cnpj" name="cnpj">
+                <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{cliente.cnpj}}" required="required">
             </div>
 
             <div class="col-md-3 col-sm-2 col-xs-2"  id="inscestadual">
                 <label for="inscestadual" class="col-sm-12 col-form-label">Insc. Estadual</label>
-                <input type="text" class="form-control" id="inscestadual" name="inscestadual">
+                <input type="text" class="form-control" id="inscestadual" name="inscestadual" value="{{cliente.inscestadual}}" required="required">
             </div>
+          {% else %} 
 
             <div class="col-md-4 col-sm-2 col-xs-2" id="cpf">
-            <label for="inscestadual" class="col-sm-2 col-form-label">CPF</label>
-            <input type="text" class="form-control" id="inscestadual" name="cpf">
-          </div>
+              <label for="cpf" class="col-sm-2 col-form-label">CPF</label>
+              <input type="text" class="form-control" id="cpf" name="cpf" value="{{cliente.cpf}}" required="required">
+            </div>
+          {% endif %}
 
           <div class="col-md-5 col-sm-2 col-xs-2">
             <label for="email" class="col-sm-2 col-form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" value="{{cliente.email}}" required="required">
           </div>
         </div>
 
         <div class="row ">
           <div class="col-md-4 col-sm-2 col-xs-2">
             <label for="cep" class="col-sm-2 col-form-label">Cep</label>
-            <input type="text" class="form-control" id="cep" name="cep">
+            <input type="text" class="form-control" id="cep" name="cep" value="{{cliente.cep}}" required="required">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2 align-self-end mt-3">
@@ -80,39 +80,40 @@
         <div class="row ">
           <div class="col-md-8 col-sm-2 col-xs-2">
             <label for="rua" class="col-sm-2 col-form-label">Rua</label>
-            <input type="text" class="form-control" id="rua" name="rua">
+            <input type="text" class="form-control" id="rua" name="rua" value="{{cliente.rua}}" required="required">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2">
             <label for="numero" class="col-sm-2 col-form-label">Numero</label>
-            <input type="text" class="form-control" id="numero" name="numero">
+            <input type="text" class="form-control" id="numero" name="numero" value="{{cliente.numero}}" required="required">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2">
             <label for="complemento" class="col-sm-2 col-form-label">Complemento</label>
-            <input type="text" class="form-control" id="complemento" name="complemento">
+            <input type="text" class="form-control" id="complemento" name="complemento" value="{% if cliente.complemento%}{{cliente.complemento}} {%endif %}">
           </div>
         </div>
 
         <div class="row ">
           <div class="col-md-6 col-sm-2 col-xs-2">
             <label for="bairro" class="col-sm-2 col-form-label">Bairro</label>
-            <input type="text" class="form-control" id="bairro" name="bairro">
+            <input type="text" class="form-control" id="bairro" name="bairro" value="{{cliente.bairro}}" required="required">
           </div>
 
           <div class="col-md-4 col-sm-2 col-xs-2">
             <label for="cidade" class="col-sm-2 col-form-label">Cidade</label>
-            <input type="text" class="form-control" id="cidade" name="cidade">
+            <input type="text" class="form-control" id="cidade" name="cidade" value="{{cliente.cidade}}" required="required">
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2">
             <label for="uf" class="col-sm-2 col-form-label">Uf</label>
-            <input type="text" class="form-control" id="uf" name="uf">
+            <input type="text" class="form-control" id="uf" name="uf" value="{{cliente.uf}}" required="required">
             
           </div>
 
           <div class="col-md-2 col-sm-2 col-xs-2">
-            <input type="hidden" class="form-control" id="tipo" name="tipo">
+            <input type="hidden" class="form-control" id="tipo" name="tipo" value="{{cliente.tipo}}" >
+            <input type="hidden" class="form-control" id="id" name="id" value="{{cliente.id}}">
             
           </div>
 
@@ -120,7 +121,7 @@
 
         <div class="row ">
           <div class="col-md-4 col-sm-2 col-xs-2 align-self-end mt-3 offset-md-8">
-            <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+            <button type="submit" class="btn btn-primary w-100">Salvar</button>
           </div>
         </div>
       </form>

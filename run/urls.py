@@ -17,18 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Login import views
+from Cliente import urls as cliente_urls
 
 urlpatterns = [
     
     path('teste/', views.teste, name='teste'),
     path('admin/', admin.site.urls),
+
+    path('cliente/', include(cliente_urls)),
+
     path('', views.home, name='home'),
     
-    path('cliente/', views.cadastroCliente, name='cadastroCliente'),
-    path('cliente/listar', views.listarCliente, name='listarCliente'),
-    path('cliente/listar/<id>', views.detalhesCliente, name='detalhesCliente'),
-    path('cliente/delete/<id>', views.deleteCliente, name='deleteCliente'),
-    path('cliente/atualizar', views.atualizarCliente, name='atualizarCliente'),
     
 
     path('usuario/', views.cadastroUsuario, name='cadastroUsuario'),

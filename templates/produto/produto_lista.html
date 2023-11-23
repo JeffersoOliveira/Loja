@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+<title>{% block title %}Santo Brilho - Produto{% endblock %}</title>
+
+
+{% block content %}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-10 mb-5">
+        <div class="row border-bottom">
+            <div class="col-sm-7">
+                <h4 class="card-title mt-3">Lista de Produto</h4>
+            </div>
+
+            <div class="col-sm-5 mt-3">
+                <form method="POST" action="{% url 'listarCliente' %}" style="display: block;">
+                    {% csrf_token %}
+                    <div class="row row-padding">
+                        <div class="col-sm-8 col-12 pesquisa" id="nome">
+                            <input type="text" class="form-control input-pesquisa" maxlength="18" id="pesquisa"
+                                name="pesquisa">
+                        </div>
+                        <div class="col-sm-4 pesquisa">
+                            <button type="submit" class="btn btn-primary btn-pesquisa w-100">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for field in form.visible_fields %}
+            <!-- <div class="inputContainer">
+                <label class="forms__label" for="{{field.id_for_label}}" class="inputText">{{field.label}}</label>
+                {{field}}
+                </div> -->
+            {% for error in field.errors %}
+            <div class="alert alert-danger">
+                {{error}}
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+
+        <ul class="list-group mt-2 col-md-12 col-12">
+            {% for produto in produtos %}
+            <li class="list-group-item d-flex ">
+                <div class="col-sm-1 col-2">
+                    <img src="\media\{{produto.img}}" class="card-img-top img-card" alt="...">
+                </div>
+                <div class="col-md-9 col-7 alinhar-centro-descricao">
+                    {{produto.descricao}}
+                </div>
+                <div class="alinhar-centro">
+                    <a href="" title="Atualiza estoque" class="btn btn-edit" >
+                        <span class="material-icons">
+                            library_books
+                        </span>
+                    </a>
+                    <a href="" title="Edita cliente" class="btn btn-edit">
+                        <span class="material-icons">
+                            edit
+                        </span>
+                    </a>
+                    <a href="" title="Deletar cliente" class="btn btn-edit btn-deletar">
+                        <span class="material-icons">
+                            delete
+                        </span>
+                    </a>
+                    <!-- <span class="badge bg-primary rounded-pill">{% if cliente.tipo == '1' %} PF {% else %} PJ {% endif %}</span> -->
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+</div>
+
+{% endblock %}

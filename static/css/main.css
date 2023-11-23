@@ -1,0 +1,131 @@
+/** **/
+/** USADO NO CADASTRO DE USUARIO **/
+.border-bottom{
+    border-bottom: 1px solid #cecfd1;
+    color: #5a5a5a;
+    padding-bottom: 10px!important;
+}
+
+.navbar {
+padding-top: 1.0rem!important;
+padding-bottom: 1.0rem!important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    font-size: 1rem;
+}
+
+.alinhar_direita {
+    justify-content: end;
+    width: 100%;
+}
+
+.btn-edit {
+    padding: 0px!important;
+    margin: 0rem 0rem;
+    font-size: 15px;
+}
+
+.btn-edit:hover{
+    color: #a00404fa;
+}
+
+/** LISTAR CLIENTE **/
+.pesquisa{
+    padding: 0px;;
+}
+
+.pesquisa-select{
+    border-radius: 6px 0px 0px 6px;
+    border-right: 0px;
+}
+
+.input-pesquisa{
+    border-radius: 0px;
+}
+
+.btn-pesquisa{
+    border-radius: 0px 6px 6px 0px;
+}
+
+.img-card {
+    max-width:250px;
+    max-height:50px;
+    width: auto;
+    height: auto;
+}
+.alinhar-centro{
+    position: relative;
+    float: left;
+    line-height: 50px;
+}
+
+.alinhar-centro-descricao{
+    position: relative;
+    float: left;
+    line-height: 50px;
+}
+.card-body>ul>li{
+    list-style: none;
+    text-align: right;
+}
+.btn-editar-produto{
+    margin-right: 0px;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size:12px
+}
+@media screen and (max-width: 500px) {
+
+    .dir {
+        justify-content: end;
+        width: 100%;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        font-size: 1.2rem;
+    }
+    
+    .input-mobile{  
+        padding: 15px;
+    }
+
+    .radio-mobile{
+        padding: 20px 30px 20px 40px;
+    }
+
+    .pesquisa-select{
+        border-radius: 6px;
+       
+    }
+    
+    .input-pesquisa{
+        border-radius: 6px;
+        margin: 5px 0px;
+       
+    }
+    
+    .btn-pesquisa{
+        border-radius: 6px ;
+    }
+
+    .row-padding{
+        padding: 10px;
+    }
+    /* .alinhar-centro{
+        position: relative;
+        float: left;
+        line-height: 50px;
+    }
+    
+    .alinhar-centro-descricao{
+        padding: 0px 10px;
+        width: 220px;
+        position: relative;
+        float: left;
+        line-height: 50px;
+    } */
+
+}

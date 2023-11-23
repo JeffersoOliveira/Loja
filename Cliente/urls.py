@@ -1,7 +1,5 @@
-from django.contrib import admin
 from django.urls import path, include
 from Cliente import views
-from Cliente import tests
 
 urlpatterns = [
     

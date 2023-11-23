@@ -12,7 +12,6 @@ from .forms import ClientePfForm, ClientePjForm
 def teste(request):
     return HttpResponse('teste')
 
-
 @login_required
 def cadastroCliente(request):
     if request.method == 'GET':
@@ -23,7 +22,6 @@ def cadastroCliente(request):
     elif request.method == 'POST':
         if request.POST.get('tipo') == "1":
             form = ClientePfForm(request.POST)
-
             if form.is_valid():
                 cliente = Cliente.objects.filter(cpf = request.POST.get('cpf'))               
                 if cliente:
@@ -63,8 +61,27 @@ def cadastroCliente(request):
 @login_required
 def listarCliente(request):
     list = Cliente.objects.all()
-    # lista = [x*x for x in list[x].id];
-    return render(request, "cliente/listar.html", {'List': list})
+    
+    if request.method == "POST":
+        pesquisa = request.POST.get("pesquisa")
+        tipo = request.POST.get("selecBusca")
+        
+        if tipo == '1' :
+            list = Cliente.objects.filter(cpf = pesquisa)
+        elif tipo == '2':
+            list = Cliente.objects.filter(cnpj = pesquisa)
+        elif tipo == '3':
+            list = Cliente.objects.all()
+
+        if len(list) == 0:
+            list = Cliente.objects.all()
+            messages.warning(request, 'Cliente não encontrado.')   
+
+    context = {
+        'List': list, 
+        'qntd': len(list)
+        }
+    return render(request, "cliente/listar.html", context)
 
 @login_required
 def detalhesCliente(request, id):
@@ -101,7 +118,9 @@ def atualizarCliente(request):
         if form.is_valid():
 
             form.save()
+            messages.success(request, 'Cliente editado com sucesso.')
+            return redirect('listarCliente')
 
-        messages.success(request, 'Cliente editado com sucesso.')
+        messages.success(request, 'algo deu erraso')
         return redirect('listarCliente')
     

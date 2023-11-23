@@ -46,7 +46,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Produto</a>
                 <div class="dropdown-menu m-0 ">
                 <a href="{% url 'cadastroProduto' %}" class="dropdown-item">Cadastrar</a>
-                <a href="blog.html" class="dropdown-item">Consultar</a>
+                <a href="{% url 'listarProduto' %}" class="dropdown-item">Consultar</a>
                 <hr class="dropdown-divider">
                 </div>
             </div>
@@ -82,6 +82,8 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'js/mask.js' %}"></script>   
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

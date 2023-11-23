@@ -17,22 +17,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Login import views
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 from Cliente import urls as cliente_urls
+from Produto import urls as produto_urls
 
 urlpatterns = [
     
+    path('', views.home, name='home'),
     path('teste/', views.teste, name='teste'),
     path('admin/', admin.site.urls),
-
     path('cliente/', include(cliente_urls)),
-
-    path('', views.home, name='home'),
-    
-    
+    path('produto/', include(produto_urls)),
+  
 
     path('usuario/', views.cadastroUsuario, name='cadastroUsuario'),
 
   
-    path('produto/', views.cadastroProduto, name='cadastroProduto'),
     path('login/', include('Login.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

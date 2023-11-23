@@ -93,3 +93,4 @@ config.py
 base_responsive.html
 VENV
 migrations
+media/images/*
